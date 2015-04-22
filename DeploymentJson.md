@@ -51,7 +51,7 @@ dependencies | false | List of dependencies required by the plugin.
 ### dependencies 
 Dependencies is a list of the following sections and their values:
 
- - plugin
+ - plugin - The plugin API version
 	 - min
 	 - max
 	 - equals
