@@ -1,4 +1,4 @@
-Z-Ray Plugins
+Zend Server Plugins
 ==========
 
 This document will describe the concepts of Zend Server Plugin, how to use and supply code samples. 
@@ -13,5 +13,6 @@ Plugin is comprised of two main directories `zray` and `route` each include the 
 You can download the skeleton package from here.
 
 ## Table of Contents
+- [deployment.json](DeploymentJson.md)
 - [Z-Ray extension API](ZRayApi.md)
 - [Routing information API](Routing.md)
