@@ -38,7 +38,7 @@ example:
 	}
 
 Name | Required | Description
------------- | -------------
+------------ | ------------- | -------------
 name | true | The name of the package. Try to be as unique as possible since this is the identifier of your package from now on. Lowercase is recommended.
 display_name | true |  The plugin's display name, visible to users and on the online gallery.
 version | true | The version of the package.
