@@ -11,7 +11,7 @@ example:
 	  "version" : "1.0.0",
 	  "type": ["zray", "route"],
 	  "eula": "EULA.txt",
-	  "readme": "EULA.txt",
+	  "readme": "README.txt",
 	  "logo": "logo.png",
 	  "dependencies": {
         "plugin": {
