@@ -1,7 +1,7 @@
 Deployment.json
 ==========
 
-This file describes the package content.
+This file describes the content of the plugin package.
 
 example:
 
@@ -40,9 +40,9 @@ example:
 Name | Required | Description
 ------------ | ------------- | -------------
 name | true | The name of the package. Try to be as unique as possible since this is the identifier of your package from now on. Lowercase is recommended.
-display_name | true |  The plugin's display name, visible to users and on the online gallery.
+display_name | true |  The plugin's display name, visible to users and in the online plugin gallery.
 version | true | The version of the package.
-type | true| array of one or more of the following values: `zray`, `route`.
+type | true| Array of one or more of the following values: `zray`, `route`.
 eula | false | Path to the end user agreement file, markdown supported.
 readme | false | Path to the readme file, markdown supported.
 logo | false | Path to the package logo file, transparent PNG is recommended.
