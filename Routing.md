@@ -24,5 +24,7 @@
 	}
 	
 	$magentoPlugin = new MagentoPlugin();
-	$magentoPlugin->setWatchedFunction("Mage_Core_Controller_Varien_Front::dispatch", array($magentoPlugin, "resolveMVCEnter"), array($magentoPlugin, "resolveMVCLeave"));
+	$magentoPlugin->setWatchedFunction("Mage_Core_Controller_Varien_Front::dispatch", 
+		array($magentoPlugin, "resolveMVCEnter"), 
+		array($magentoPlugin, "resolveMVCLeave"));
 ```
