@@ -11,7 +11,7 @@ class MyAppPlugin extends ZAppsPlugin {
 }
 ```
 ##setWatchedFunction##
-setWatchedFunction enables you to track one of your application functions. It provides you with the ability to set two callback functions that will be called whenever the application function is executed. The first callback will be called when the function is entered, and the second will be called when the function exits.
+This function enables you to track one of your application functions. It provides you with the ability to set two callback functions that will be called whenever the application function is executed. The first callback will be called when the function is entered, and the second will be called when the function exits.
 ```php
 $myAppPlugin>setWatchedFunction(MyRouteClass::resolveRoute, array($myAppPlugin, ‘resolveRouteEnter’), array($myAppPlugin, ‘resolveRouteLeave’);
 ```
