@@ -12,10 +12,45 @@ class MyAppPlugin extends ZAppsPlugin {
 ```
 ##setWatchedFunction##
 setWatchedFunction enables you to track one of your application functions. It provides you with the ability to set two callback functions that will be called whenever the application function is executed. The first callback will be called when the function is entered, and the second will be called when the function exits.
-You can also have access to the function parameters using $context[‘functionArgs’].
-
 ```php
 $myAppPlugin>setWatchedFunction(MyRouteClass::resolveRoute, array($myAppPlugin, ‘resolveRouteEnter’), array($myAppPlugin, ‘resolveRouteLeave’);
+```
+You can also have access to the function parameters using $context[‘functionArgs’].
+```php
+<?php
+
+	class SymfonyPlugin extends ZAppsPlugin {
+		
+		public function resolveMVCEnter($context) {
+			
+		}
+		
+		public function resolveMVCLeave($context) {
+		
+			if (!$this->resolved) {
+				$request = $context['functionArgs'][0];
+
+                $ctrl = $request->get('_controller');
+                if (empty($ctrl)) {
+                        return;
+                }
+                $ctrl = explode(':', $ctrl);
+                $controller = $ctrl[0];
+                if (!empty($ctrl[2])) {
+                        $action = $ctrl[2];
+                } else {
+                        $action = $ctrl[1];
+                }
+                $this->setRequestMVC(array($controller, $action));
+				$this->resolved = true;
+			}			
+		}		
+		
+		private $resolved = false;		
+	}
+	
+	$symfonyPlugin = new SymfonyPlugin();
+	$symfonyPlugin->setWatchedFunction("Symfony\Component\HttpKernel\HttpKernel::handle", array($symfonyPlugin, "resolveMVCEnter"), array($symfonyPlugin, "resolveMVCLeave"));
 ```
 ##setRequestRoute##
 This method is defined by 'ZAppsPlugin' and is used to define the current request route in Zend Server. 
