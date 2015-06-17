@@ -4,7 +4,7 @@ Zend Server Route plugins help Zend Server understand the specific routing syste
 ##Plugin Structure##
 A Route plugin is comprised of a 'route.php' file which contains all the plugin logic. 
 ##ZAppsPlugin##
-Zend internally defined class that inherits the plugin object.
+This class is an internal Zend class which enables the connection between the plugin and Zend Server.
 ```php
 <?php
 class MyAppPlugin extends ZAppsPlugin {
