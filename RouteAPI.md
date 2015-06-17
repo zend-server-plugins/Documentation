@@ -11,8 +11,9 @@ class MyAppPlugin extends ZAppsPlugin {
 }
 ```
 ##setWatchedFunction##
-This method is used to register two callbacks to your user function. One when the function is entered and one for when it exits.
-If you need the function arguments - you can find them in $context[‘functionArgs’].
+setWatchedFunction enables you to track one of your application functions. It provides you with the ability to set two callback functions that will be called whenever the application function is executed. The first callback will be called when the function is entered, and the second will be called when the function exits.
+You can also have access to the function parameters using $context[‘functionArgs’].
+
 ```php
 $myAppPlugin>setWatchedFunction(MyRouteClass::resolveRoute, array($myAppPlugin, ‘resolveRouteEnter’), array($myAppPlugin, ‘resolveRouteLeave’);
 ```
@@ -28,20 +29,20 @@ The following example defines the routing for Magento requests:
 
 	class MagentoPlugin extends ZAppsPlugin {
 		
-		public function resolveMVCEnter($context) {
+		public function resolveRouteEnter($context) {
 			
 		}
 		
-		public function resolveMVCLeave($context) {
+		public function resolveRouteLeave($context) {
 			if (!$this->resolved) {
 				$this->resolved = true;	
-				$mvc = array(					
+				$route = array(					
 					"module" => Mage::app()->getFrontController()->getRequest()->getModuleName(),
 					"controller" => Mage::app()->getFrontController()->getRequest()->getControllerName(),
 					"action" => Mage::app()->getFrontController()->getRequest()->getActionName()
 					);
 										
-				$this->setRequestMVC($mvc);		
+				$this->setRequestRoute($route);		
 			}
 		}		
 		
@@ -50,6 +51,6 @@ The following example defines the routing for Magento requests:
 	
 	$magentoPlugin = new MagentoPlugin();
 	$magentoPlugin->setWatchedFunction("Mage_Core_Controller_Varien_Front::dispatch", 
-		array($magentoPlugin, "resolveMVCEnter"), 
-		array($magentoPlugin, "resolveMVCLeave"));
+		array($magentoPlugin, "resolveRouteEnter"), 
+		array($magentoPlugin, "resolveRouteLeave"));
 ```
