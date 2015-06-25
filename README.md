@@ -10,9 +10,9 @@ A Zend Server plugin is an archive file that consists of a [Z-Ray extension](htt
 A plugin is comprised of two main directories: `zray` and `route`, respectively including Z-Ray extension and routing information. An additional file that is required for deployment is the `deployment.json` file which describes the plugin package.
 
 ## Skeleton package
-You can download the skeleton package from here:
+You can download the skeleton package from here: [Z-Ray Skeleton Plugin](https://github.com/zend-server-plugins/Skeleton)
 
 ## Table of Contents
 - [deployment.json](DeploymentJson.md)
 - [Z-Ray extension API](ZRayApi.md)
-- [Routing information API](Routing.md)
+- [Routing information API](RouteAPI.md)
