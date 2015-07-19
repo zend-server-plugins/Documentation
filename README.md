@@ -1,4 +1,4 @@
-Zend Server Plugins - API Version 1.0
+Zend Server Plugins - API Version 1.0.3
 ==========
 
 This document describes the concept of Zend Server Plugins, including basic instructions on how to use the feature and code samples. 

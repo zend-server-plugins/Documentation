@@ -31,6 +31,7 @@ You can find code examples for all the content in this document (and more!) in o
 	- [zrayExtension::untraceFunction($functionName);](DataCollection.md#zrayextensionuntracefunctionfunctionname)
 	- [zrayExtension::traceFile($filename, $onenter, $onleave);](DataCollection.md#zrayextensiontracefilefilename-onenter-onleave)
 	- [zrayExtension::setMetadata($metadata);](DataCollection.md#zrayextensionsetmetadatametadata)
+- [Z-Ray Actions](Actions.md#)
 - [Z-Ray Data Display](DataDisplay.md#)
 	- [Automatically generated panels](DataDisplay.md#automatically-generated-panels)
 	- [Z-Ray Extension Module.php](DataDisplay.md#z-ray-extension-modulephp)
