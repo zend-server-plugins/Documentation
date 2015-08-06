@@ -1,9 +1,9 @@
 Deployment.json
 ==========
 
-This file describes the content of the plugin package.
+This file describes the plugin content, and can contain all or some of the following parameters (please take note that some are required):
 
-example:
+Example:
 
 	{
 	  "name" : "magento",
