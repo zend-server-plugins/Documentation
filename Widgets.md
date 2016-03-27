@@ -274,7 +274,7 @@ We start by declaring that we want to use a summary table by adding the containe
 $tableParams = array(
    'tableId'      		=> 'unique-main-table-id',
    'tableWidth'   		=> '3',
-   'summaryTableId'  		=> 'unique-summary-table-id ',
+   'summaryTableId'  		=> 'unique-summary-table-id',
    'summaryTableWidth'  	=> '1',
 );
 ?>
