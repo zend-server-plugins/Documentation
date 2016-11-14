@@ -19,6 +19,7 @@ to understand the concept.
 ### Structure
 
 A standard ZS plugin folder has the next structure
+```
 * ui/
     * MyFirstExtensionModule/
     * MySecondExtensionModule/
@@ -27,9 +28,9 @@ A standard ZS plugin folder has the next structure
 * README.md
 * logo.png
 * deployment.json
-
+```
 The "ui" folder contains the ZF2 modules of the plugin. Every module has the next structure
-
+```
 * config/
     * module.config.php
 * src/
@@ -50,7 +51,7 @@ The "ui" folder contains the ZF2 modules of the plugin. Every module has the nex
             * 1x12/
                 * my-first-web-api.pjson.phtml
 * Module.php
-
+```
 
 
 
