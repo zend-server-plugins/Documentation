@@ -95,13 +95,18 @@ The skeleton extension has several predefined configuration keys, which let the 
 
 #### Navigation
 
-- Navigation is the section in which we define:
-    - The name, the icon and the location of the page in the main menu. 
-    - The URL of the new page
-    - The controller name and the view template file
-    - External resources - JS/CSS files. Please note that before Zend Server v9.0.1, only JS files could be defined for external initial load, while the CSS files had to be included (using <link ...>) inside the HTML template.
+- Navigation is the section that defines:
+    - The name, the icon and the location of the page in the main menu. The icon is defined with glyphicon name. Here is a [List of available glyphicons](http://glyphicons.com).
+    - The URL of the new page. 
+      e.g. "/web-api-client" will be accessible through "http://localhost:10081/ZendServer/#!/web-api-client"
+    - The controller name and the view template file. The name of the controller has to be the same as defined using angular's "app.controller" method. The view template is a full URL to the template.
+    - External resources - JS/CSS files. Those resources are loaded when the UI starts.
+      Please note(!) that before Zend Server v9.0.1, only JS files could be defined for external initial load, while the CSS files had to be included (using <link ...>) inside the HTML template.
 
-- Please note! Zend Server's UI is built on top of angularJs, therefore it's highly recommended to build new pages using angular methodologies. However, there's still an option to write extensions using the conservative way, where HTML code is generated from within PHP. In that case, pay attention to the differences in the "navigation" section. Instead of "url", "angularController" and "templateUrl" keys, one should use "controller" and "action" keys, which will define the relevant ZF2 action/controller.
+- The "administration" key defines in which main menu section the page will appear. 
+  Please check the list of all the available sections in ```<ZS installation folder>/gui/config/autoload/navigation.global.config.php```
+
+- Please note(!) Zend Server's UI is built on top of angularJs, therefore it's highly recommended to build new pages using angular methodologies. However, there's still an option to write extensions using the conservative way, where HTML code is generated from within PHP. In that case, pay attention to the differences in the "navigation" section. Instead of "url", "angularController" and "templateUrl" keys, one should use "controller" and "action" keys, which will define the relevant ZF2 action/controller.
 
 ```
 'navigation' => array(
