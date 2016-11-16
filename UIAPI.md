@@ -24,20 +24,23 @@ A standard ZS plugin folder has the next structure
     * MyFirstExtensionModule/
     * MySecondExtensionModule/
     * MyThirdExtensionModule/
+* zray/
+* route/
 * LICENSE.txt
 * README.md
 * logo.png
 * deployment.json
 ```
-The "ui" folder contains the ZF2 modules of the plugin. Every module has the next structure
+The plugin has "zray" and "route" folders, but here we'll focus on the "ui" folder, which
+contains one or more ZF2 modules. Every module has the next structure
 ```
 * config/
-    * module.config.php
+    * *module.config.php* - Routing information, location in the main menu, and other module configurations
 * src/
     * MyFirstExtensionModule/
         * Controller/
-            * WebApiController.php
-* public/
+            * *WebApiController.php* - Module controller, used as an entry point
+* *public/* - Module's static files (JS/CSS/Images) location
     * js/
         * index.js
         * ...
@@ -45,12 +48,14 @@ The "ui" folder contains the ZF2 modules of the plugin. Every module has the nex
         * index.css
         * ...
     * ...
-* views/
-    * my-first-extension-module/
+* views/ - Module's view files
+    * my-first-extension-module/ - Module's namespace. Defined as dash separated (The namespace is usually defined in capitalized camel case.
         * web*api/
-            * 1x12/
-                * my-first-web-api.pjson.phtml
-* Module.php
+            * 1x12/ - the version of the web API
+                * my-first-web-api.pjson.phtml - The view file that contains the JSON response. 
+                                                - The name of the view has to be the same as the controller action
+                * my-first-web-api.pxml.phtml - The view file that contains the XML response
+* Module.php - Module initializations and DI definitions
 ```
 
 
