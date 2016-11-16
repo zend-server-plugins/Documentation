@@ -35,12 +35,13 @@ The plugin has "zray" and "route" folders, but here we'll focus on the "ui" fold
 contains one or more ZF2 modules. Every module has the next structure
 ```
 * config/
-    * *module.config.php* - Routing information, location in the main menu, and other module configurations
+    * module.config.php - Routing information, location in the main menu, 
+                            - and other module configurations
 * src/
     * MyFirstExtensionModule/
         * Controller/
-            * *WebApiController.php* - Module controller, used as an entry point
-* *public/* - Module's static files (JS/CSS/Images) location
+            * WebApiController.php - Module controller, used as an entry point
+* *public/* - Module's static files (JS/CSS/Images/Templates/...) location
     * js/
         * index.js
         * ...
@@ -49,15 +50,31 @@ contains one or more ZF2 modules. Every module has the next structure
         * ...
     * ...
 * views/ - Module's view files
-    * my-first-extension-module/ - Module's namespace. Defined as dash separated (The namespace is usually defined in capitalized camel case.
-        * web*api/
+    * my-first-extension-module/ - Module's namespace. Defined as dash separated (The 
+                                    - namespace is usually defined in capitalized camel case).
+        * web-api/ - Lowercase controller name dash separated. i.e. WebApiController 
+                    - becomes "web-api". the suffix "Controller" is emitted
             * 1x12/ - the version of the web API
                 * my-first-web-api.pjson.phtml - The view file that contains the JSON response. 
-                                                - The name of the view has to be the same as the controller action
+                                                - The name of the view has to be the same as 
+                                                - the controller action
                 * my-first-web-api.pxml.phtml - The view file that contains the XML response
 * Module.php - Module initializations and DI definitions
 ```
 
+### Module configuration
+
+The file "module.config.php" returns a configuration array (see [ZF2 configuration documentation](https://framework.zend.com/manual/2.4/en/tutorials/config.advanced.html)).
+The skeleton extension has several predefined configuration keys, which let the extension to work properly. We'll go over it, and see what every config entry provides us.
+
+- Define the controllers of the module. In the example below, the only controller in the extension is used for web APIs. Please note that the name (array key) in the "invokables" list contains web APIs version suffix (after the dash character). The current web APIs version can be checked in ```module/WebAPI/Module.php``` file, where it's defined as a constant ```const WEBAPI_CURRENT_VERSION = '1.12';```. 
+```
+    'controllers' => array(
+        'invokables' => array(
+            'zsWebApiClient-1_12' => 'zsWebApiClient\Controller\WebApiController',
+        ),
+    ),
+```
 
 
 
