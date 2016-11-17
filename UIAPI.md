@@ -95,18 +95,20 @@ The skeleton extension has several predefined configuration keys, which let the 
 
 #### Navigation
 
-- Navigation is the section that defines:
-    - The name, the icon and the location of the page in the main menu. The icon is defined with glyphicon name. Here is a [List of available glyphicons](http://glyphicons.com).
+- In many cases, a UI extension is created in order to add new pages to ZS UI system. In that case, the new page should have its representation in the main menu, along with  several other required options. "Navigation" section is the one responsible for that, and it defines:
+    - The name, the icon and the location of the page in the main menu. 
+      The icon is defined with glyphicon name. Here is a [List of available glyphicons](http://glyphicons.com).
+      The "administration" key (3rd level) defines in which main menu section the page will appear. List of all the available sections can be found in ```<ZS installation folder>/gui/config/autoload/navigation.global.config.php```
     - The URL of the new page. 
-      e.g. "/web-api-client" will be accessible through "http://localhost:10081/ZendServer/#!/web-api-client"
-    - The controller name and the view template file. The name of the controller has to be the same as defined using angular's "app.controller" method. The view template is a full URL to the template.
-    - External resources - JS/CSS files. Those resources are loaded when the UI starts.
-      Please note(!) that before Zend Server v9.0.1, only JS files could be defined for external initial load, while the CSS files had to be included (using <link ...>) inside the HTML template.
+      In case of an angular implementation, "/web-api-client" for instance, will be accessible through "http://localhost:10081/ZendServer/#!/web-api-client"
+      In case of a conservative ZF2 way, there's no need to define a URL, the controller and the action will define it automatically.
+    - The controller name and the view template file. 
+      The name of the controller has to be the same as defined in angular's "app.controller(<controller name>, <fn>)" method. 
+      The view template is a full URL to the template.
+    - External resources - JS/CSS files. The provided resources are loaded when the UI starts.
+      Please keep in mind, that before Zend Server v9.0.1, only JS files could be provided, while CSS files had to be included (using <link ...>) inside the HTML template.
 
-- The "administration" key defines in which main menu section the page will appear. 
-  Please check the list of all the available sections in ```<ZS installation folder>/gui/config/autoload/navigation.global.config.php```
-
-- Please note(!) Zend Server's UI is built on top of angularJs, therefore it's highly recommended to build new pages using angular methodologies. However, there's still an option to write extensions using the conservative way, where HTML code is generated from within PHP. In that case, pay attention to the differences in the "navigation" section. Instead of "url", "angularController" and "templateUrl" keys, one should use "controller" and "action" keys, which will define the relevant ZF2 action/controller.
+- Please note(!) Zend Server's UI is built on top of angularJs, therefore it's highly recommended to build new pages using angular methodologies. However, there's still an option to write extensions using the conservative way (where HTML code is generated from within PHP). In that case, pay attention to the differences in the "navigation" section. Instead of "url", "angularController" and "templateUrl", the keys "controller" and "action" should be used. Those keys define the corresponding ZF2 action/controller. Both cases can be found in [Zend Server skeleton plugin](https://github.com/zend-server-plugins/Skeleton)
 
 ```
 'navigation' => array(
@@ -136,6 +138,8 @@ The skeleton extension has several predefined configuration keys, which let the 
 
 #### Web APIs
 
+- Unlike new pages, Web APIs won't have their representation in the main menu. however, they do have to have a URL, a controller and an action. Web APIs are defined in "webapi_routes" section, where every entry looks like a standard [ZF2 routing configuration](https://framework.zend.com/manual/2.4/en/in-depth-guide/understanding-routing.html). In the example below, "zsWebApiClient" is the semantic name of the web API, that defines the options for the routing - the route itself (the URL of the web API) and it's implementation in the code - the controller and the action. Pay attention to the version number, that version has to be the same as defined per the web API controller under "invokables" array. The URL below will be accessible through "http://localhost:10081/ZendServer/Api/getAvailableWebApis"
+
 ```
     'webapi_routes' => array(
         'zsWebApiClient' => array(
@@ -154,4 +158,26 @@ The skeleton extension has several predefined configuration keys, which let the 
 
 #### Static files
 
-The URLs to the static files below, such as JS, CSS and HTML are defined with ```/ZendServer/ModuleResource/*```. 
+Almost every module in ZS UI system has a "public" folder which contains static files like JS, CSS, and images that are relevant to that specific module. That method has the "right" structure and looks wonderful, but unlike the main "public" folder (<ZS installation dir>/gui/public), those inner "public" folders are inaccessible from the web. Therefore, we have created kind of a "proxy" service that makes static files inside modules' folders, visible to the web. 
+
+The service is called "ModuleResource" and it makes the static files accessible using the next URL pattern:
+```
+    http://localhost:10081/ZendServer/ModuleResource/<module name>/<path inside module "public folder">
+```
+
+Example:
+```
+* modules/
+    * MyModule/
+        * public/
+            * js/
+                * main.js
+            * css/
+                * main.css
+
+Those two files have the next URLs correspondingly
+``` 
+    http://localhost:10081/ZendServer/ModuleResource/MyModule/js/main.js
+    http://localhost:10081/ZendServer/ModuleResource/MyModule/css/main.css
+```
+
