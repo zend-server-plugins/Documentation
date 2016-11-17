@@ -223,7 +223,20 @@ In the example above we use two services - $scope and WebAPI. The first one is b
 
 WebAPI is a ZS _promise_ service that wraps the standard built-in ```$http``` service (used for AJAX calls, full documentation [here](https://docs.angularjs.org/api/ng/service/$http)), and customizes it to fit ZS web APIs requirements like additional headers and specific request format. All the created ZS UI services are defined in ```<ZS installation dir>/public/spa-assets/js/app.js```. Naturally, some of the web APIs require GET or POST parameters, they should be defined by "params" and "data" properties accordingly.
 
+As any other promise object, WebAPI has "then" and "finally" methods. The first, "then" method receives two callback parameters - The first callback is invoked on successful response, while the second on failed. The "finally" method receives one callback parameter and it's invoked once the request completes regardless its status. "finally" method is usually used to show/hide spinners.
 
+#### View template
+
+View templates are responsible for the presentation level of our angular app. We use standard ".html" files which are usually located under ```public/templates``` in the modules. A view template may have "if" conditions, "for-each" loops, and use properties of the $scope object from the controller.
+
+The example below domonstrates how easily can we display the data that we got from "getAvailableWebApis" web API (in the controller)
+
+```
+<h1>Available web APIs</h1>
+<ul>
+    <li ng-for="item in availableWebApis">{{ item }}</li>
+</ul>
+```
 
 
 
