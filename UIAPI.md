@@ -158,7 +158,7 @@ The skeleton extension has several predefined configuration keys, which let the 
 
 #### Static files
 
-Almost every module in ZS UI system has a "public" folder which contains static files like JS, CSS, and images that are relevant to that specific module. That method has the "right" structure and looks wonderful, but unlike the main "public" folder (<ZS installation dir>/gui/public), those inner "public" folders are inaccessible from the web. Therefore, we have created kind of a "proxy" service that makes static files inside modules' folders, visible to the web. 
+- Almost every module in ZS UI system has a "public" folder which contains static files like JS, CSS, and images that are relevant to that specific module. That method has the "right" structure and looks wonderful, but unlike the main "public" folder (<ZS installation dir>/gui/public), those inner "public" folders are inaccessible from the web. Therefore, we have created kind of a "proxy" service that makes static files inside modules' folders, visible to the web. 
 
 The service is called "ModuleResource" and it makes the static files accessible using the next URL pattern:
 ```
@@ -174,6 +174,7 @@ Example:
                 * main.js
             * css/
                 * main.css
+```
 
 Those two files have the next URLs correspondingly
 ``` 
@@ -181,3 +182,38 @@ Those two files have the next URLs correspondingly
     http://localhost:10081/ZendServer/ModuleResource/MyModule/css/main.css
 ```
 
+### Client side
+
+Every new page in the system has an *angular controller* which is a javascript file under "public/js/controllers" folder in every module, and a *view template* that is defined under "public/templates" folder and has a ".html" file extension. The controller is a javascript code encapsulated in a controller callback, and interacts with angular's objects, such as $scope, $rootScope, $http, etc. The template is an HTML code with angular's directives and placeholders.
+
+#### Controller
+
+The main angular object is called ```zsApp``` and it's defined in the global scope, and all the created controllers, services, factories and filters have to be defined in that pbject. An angular controller is defined in the next way
+
+```
+zsApp.controller('<controller name>', ['<angular services>', function(<same angular services as parameters>) {
+    // implementation here...
+}]);
+```
+The interesting part here is the services. Among many common services, the most interesting are those which are responsible for the interaction between the controller and the view template, and for the communication with the web APIs. In addition to the various services defined by angular itself, there are a few important services created by us and provice ZS specific features, like the interaction with our web APIs, and some ZS UI unique tweaks.
+
+Let's have a example in which we get list of all the available web APIs from the server, and display them on the screen.
+```
+zsApp.controller('zsWebApiClientController', ['$scope', 'WebAPI', function($scope, WebAPI) {
+
+    // initialize the scope variable
+    $scope.availableWebApis = [];
+
+    // send request to the server, and set the "availableWebApis" variable
+    WebAPI({
+        method: 'get',
+        url: '/ZendServer/Api/getAvailableWebApis'
+    }).then(function(res) {
+        // success callback
+        $scope.availableWebApis = res.data.responseData.webapis;
+    }, function() {
+        // failure callback
+        alert('Error occurred :(');
+    });
+}]);
+```
