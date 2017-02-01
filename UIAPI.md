@@ -2,21 +2,26 @@
 
 ## Intro
 
-UI extensions allow us to extend the UI by creating additional pages, web services and general functionality.
-Zend Server's UI is build on top of Zend Framework 2 on the server side and AngularJs v1.5.0 on the client side,
-therefore, knowing these technologies is a great advantage, but don't worry, having basic knowledge in PHP/HTML/JS/CSS 
-and the MVC design pattern is more than enough.
+UI extensions allow us to extend the Zend Server administration UI by creating additional pages, web services and general functionality.
+The UI is build on top of Zend Framework 2 on the server side and, AngularJs v1.5.0 on the client side.
+Therefore, some experience with these technologies could be a great advantage, but don't worry, with basic knowledge in PHP/HTML/JS/CSS 
+and the MVC design pattern, can be good enough.
 
 ## Getting Started
 
 ### What is a UI extension
 
 Zend Server UI is built on top of Zend Framework 2 (ZF2), and in most cases every module represents one ZS section like 
-JobQueue, CodeTracing, etc. A UI extension is a set of (one or more) ZF2 modules that are added to the existing modules and are loaded
-when the application starts. As mentioned before, there's no need to know ZF2, but basic knowledge of MVC is pretty much required
+JobQueue, CodeTracing, and others. A UI extension is a set of (one or more) ZF2 modules that are added to the existing application modules, and are loaded
+when the application starts. As mentioned before, there's no need to be familiar with ZF2, however, basic knowledge of MVC is pretty much required
 to understand the concept.
 
+Best way to start writing a new plugin, is by cloning the [Skeleton plugin repository](https://github.com/zend-server-plugins/Skeleton), which is stored on GitHub as well.
+
 ### Structure
+
+A Zend Server plugin must have a specific folder structure in order to work properly. The files tree must contain configuration files, 
+Zend Server extensions folders, and optionally additional static files like scripts, styles and images.
 
 A standard ZS plugin folder has the next structure
 ```
@@ -31,16 +36,18 @@ A standard ZS plugin folder has the next structure
 * logo.png
 * deployment.json
 ```
-The plugin has "zray" and "route" folders, but here we'll focus on the "ui" folder, which
-contains one or more ZF2 modules. Every module has the next structure
+The described plugin has "zray" and "route" folders, but here we'll focus on the "ui" folder which
+contains ZF2 modules that will extend the functionality of our UI. 
+
+Every module in the plugin has the next structure
 ```
 * config/
     * module.config.php - Routing information, location in the main menu, 
-                            - and other module configurations
+                            - and other configurations
 * src/
-    * MyFirstExtensionModule/
+    * MyFirstExtensionModule/ - The name of the folder should reflect the namespace used in the source files
         * Controller/
-            * WebApiController.php - Module controller, used as an entry point
+            * WebApiController.php - Module controller, used as an entry point for the new web services
 * *public/* - Module's static files (JS/CSS/Images/Templates/...) location
     * js/
         * index.js
@@ -50,8 +57,8 @@ contains one or more ZF2 modules. Every module has the next structure
         * ...
     * ...
 * views/ - Module's view files
-    * my-first-extension-module/ - Module's namespace. Defined as dash separated (The 
-                                    - namespace is usually defined in capitalized camel case).
+    * my-first-extension-module/ - The name of the folder should reflect the namespace - dash separated. (The 
+                                    - namespace is usually defined in capitalized camel case, like "MyCustomNamespace").
         * web-api/ - Lowercase controller name dash separated. i.e. WebApiController 
                     - becomes "web-api". the suffix "Controller" is emitted
             * 1x12/ - the version of the web API
@@ -62,10 +69,12 @@ contains one or more ZF2 modules. Every module has the next structure
 * Module.php - Module initializations and DI definitions
 ```
 
+Next, we are going to dive deep into every folder/part of the module.
+
 ### Module configuration
 
-The file ```module.config.php``` returns a configuration array (see [ZF2 configuration documentation](https://framework.zend.com/manual/2.4/en/tutorials/config.advanced.html)).
-The skeleton extension has several predefined configuration keys, which let the extension to work properly. We'll go over it, and see what every config entry provides us.
+The file ```module.config.php``` returns a configuration array, which is a standard ZF2 way to describe and define module's details or meta-data (see [ZF2 configuration documentation](https://framework.zend.com/manual/2.4/en/tutorials/config.advanced.html)).
+Our skeleton extension has a minimal set of a few predefined configuration values, which are required in order to let the extension work properly. We'll go over every key, and check what it is good for and what it provides us.
 
 #### Controllers
 
