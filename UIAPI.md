@@ -78,7 +78,7 @@ Our skeleton extension has a minimal set of a few predefined configuration value
 
 #### Controllers
 
-- Define the controllers of the module. In the example below, the only controller in the extension is used for web APIs. Please note that the name (array key) in the "invokables" list contains web APIs version suffix (after the dash character). The current web APIs version can be checked in ```<ZS installation folder>/gui/module/WebAPI/Module.php``` file, where it's defined as a constant ```const WEBAPI_CURRENT_VERSION = '1.12';```. 
+- Define the controllers of the module. In the example below, the only controller in the extension is used for web APIs. Please note that the name (array key) in the "invokables" list contains web APIs version suffix (after the dash character). The current web APIs version is defined in the ```<ZS installation folder>/gui/module/WebAPI/Module.php``` file. It's defined as a constant ```const WEBAPI_CURRENT_VERSION = '1.12';```. 
 ```
     'controllers' => array(
         'invokables' => array(
@@ -87,9 +87,10 @@ Our skeleton extension has a minimal set of a few predefined configuration value
     ),
 ```
 
-#### ACL
+#### ACL (Access control)
 
-- When creating a new page or a new web API in Zend Server, we might want to restrict the access to a specific role, or to limit the access to specific actions. That, can be done by adding definitions per web API or page under "route" key within "acl" section. For every web API or controller, we define which users under which role are allowed to use our newly created resource. The list of all the available roles is defined under ```\Application\Module::ACL_ROLE_*```. The key "allowedMethods" is an array with the allowed methods in our controller. When "allowedMethods" is empty, there's no restriction by methods.
+- When creating a new page or a new web API in Zend Server, we might want to restrict the access to a specific role, or limit the access to specific actions. That, can be done by adding definitions per web API or page, under "route" key in "acl" section. For every web API or controller, we define which users under which role are allowed to use our newly created resource, or specific actions. The list of all the available roles is defined under ```\Application\Module::ACL_ROLE_*``` (as constants). 
+The key "allowedMethods" is an array with the allowed methods in our controller (without the "Action" method name suffix). For instance, if we have a method "getMyListAction", it will be defined as ```'allowedMethods' => array('getMyList', ...),```. Alternatively, when the key "allowedMethods" is empty, there's no restriction by methods.
 
 ```
     'acl' => array(
