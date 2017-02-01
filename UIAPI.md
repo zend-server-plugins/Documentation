@@ -105,17 +105,18 @@ The key "allowedMethods" is an array with the allowed methods in our controller 
 
 #### Navigation
 
-- In many cases, a UI extension is created in order to add new pages to ZS UI system. In that case, the new page should have its representation in the main menu, along with  several other required options. "Navigation" section is the one responsible for that, and it defines:
-    - The name, the icon and the location of the page in the main menu. 
+- In many cases (probably in most of them), a UI extension is created in order to add new pages to ZS UI system. 
+The new page should have its representation in the main menu, along with several other required options. "Navigation" section is the one responsible for that. Every item (page) must have several definitions:
+    - The **name**, the **icon** and the **location** of the page in the main menu. 
       The icon is defined with glyphicon name. Here is a [List of available glyphicons](http://glyphicons.com).
-      The "administration" key (3rd level) defines in which main menu section the page will appear. List of all the available sections can be found in ```<ZS installation folder>/gui/config/autoload/navigation.global.config.php```
-    - The URL of the new page. 
-      In case of an angular implementation, "/web-api-client" for instance, will be accessible through "http://localhost:10081/ZendServer/#!/web-api-client"
+      The "administration" key (3rd level) defines in which main menu section the page will appear (In the next example the page will appear under "Administration" main menu section). List of all the available sections can be found in ```<ZS installation folder>/gui/config/autoload/navigation.global.config.php```
+    - The **URL** of the new page. 
+      In case of an angular implementation, the URL is provided as a path, relative to the base URL of the app. Therefore the path "/web-api-client" for instance, will be accessible through "http://localhost:10081/ZendServer/#!/web-api-client" 
       In case of a conservative ZF2 way, there's no need to define a URL, the controller and the action will define it automatically.
-    - The controller name and the view template file. 
-      The name of the controller has to be the same as defined in angular's "app.controller(<controller name>, <fn>)" method. 
+    - The **controller name** and the **view template** file. 
+      The name of the controller has to be the same as defined in angular's ```app.controller(<controller name>, <fn>)``` method. 
       The view template is a full URL to the template.
-    - External resources - JS/CSS files. The provided resources are loaded when the UI starts.
+    - External **resources** - JS/CSS files. The provided resources are loaded when the UI starts.
       Please keep in mind, that before Zend Server v9.0.1, only JS files could be provided, while CSS files had to be included (using <link ...>) inside the HTML template.
 
 - Please note(!) Zend Server's UI is built on top of angularJs, therefore it's highly recommended to build new pages using angular methodologies. However, there's still an option to write extensions using the conservative way (where HTML code is generated from within PHP). In that case, pay attention to the differences in the "navigation" section. Instead of "url", "angularController" and "templateUrl", the keys "controller" and "action" should be used. Those keys define the corresponding ZF2 action/controller. Both cases can be found in [Zend Server skeleton plugin](https://github.com/zend-server-plugins/Skeleton)
