@@ -113,13 +113,13 @@ The new page should have its representation in the main menu, along with several
     - The **URL** of the new page. 
       In case of an angular implementation, the URL is provided as a path, relative to the base URL of the app. Therefore the path "/web-api-client" for instance, will be accessible through "http://localhost:10081/ZendServer/#!/web-api-client" 
       In case of a conservative ZF2 way, there's no need to define a URL, the controller and the action will define it automatically.
-    - The **controller name** and the **view template** file. 
+    - The **angular controller name** and the **view template** file. 
       The name of the controller has to be the same as defined in angular's ```app.controller(<controller name>, <fn>)``` method. 
       The view template is a full URL to the template.
     - External **resources** - JS/CSS files. The provided resources are loaded when the UI starts.
-      Please keep in mind, that before Zend Server v9.0.1, only JS files could be provided, while CSS files had to be included (using <link ...>) inside the HTML template.
+      Please keep in mind, that before Zend Server v9.0.1, only JS files could be provided, while CSS files had to be included inline (using <link ...>) inside the HTML template.
 
-- Please note(!) Zend Server's UI is built on top of angularJs, therefore it's highly recommended to build new pages using angular methodologies. However, there's still an option to write extensions using the conservative way (where HTML code is generated from within PHP). In that case, pay attention to the differences in the "navigation" section. Instead of "url", "angularController" and "templateUrl", the keys "controller" and "action" should be used. Those keys define the corresponding ZF2 action/controller. Both cases can be found in [Zend Server skeleton plugin](https://github.com/zend-server-plugins/Skeleton)
+- Please note(!) Zend Server's UI is built on top of angularJs, therefore it's highly recommended to build new pages using angular methodologies. However, there's still an option to write extensions using the conservative way (where HTML code is generated from within PHP). In that case, pay attention to the differences in the "navigation" section. Instead of "url", "angularController" and "templateUrl", the keys "controller" and "action" should be used. Those keys define the corresponding ZF2 action/controller. Both cases can be found in [Zend Server skeleton plugin](https://github.com/zend-server-plugins/Skeleton). The controller name is the one defined under 'controllers' > 'invokables' section.
 
 ```
 'navigation' => array(
@@ -147,10 +147,9 @@ The new page should have its representation in the main menu, along with several
 ),
 ```
 
-#### Web APIs
+#### Web APIs routes
 
-- Unlike new pages, Web APIs won't have their representation in the main menu. however, they do have to have a URL, a controller and an action. Web APIs are defined in "webapi_routes" section, where every entry looks like a standard [ZF2 routing configuration](https://framework.zend.com/manual/2.4/en/in-depth-guide/understanding-routing.html). In the example below, "zsWebApiClient" is the semantic name of the web API, that defines the options for the routing - the route itself (the URL of the web API) and it's implementation in the code - the controller and the action. Pay attention to the version number, that version has to be the same as defined per the web API controller under "invokables" array. The URL below will be accessible through "http://localhost:10081/ZendServer/Api/getAvailableWebApis"
-
+- Unlike UI pages, web APIs won't have a main menu item, however, they must have an accessible URL. Web APIs routing definitions differ from regular pages navigation settings. All the web APIs are defined under "webapi_routes" section, where every entry has the same structure as a standard [ZF2 routing configuration](https://framework.zend.com/manual/2.4/en/in-depth-guide/understanding-routing.html). In our example, we are adding one web API, that obviously has a controller and an action, and we mention that it's defined in ZS web APIs version 1.12. Please note that the version number has to be the same as the version number of our defined controller (under "invokables" array in "controllers" section). The definition of our new web API is located under the name "zsWebApiClient" - that is a unique name for the system. \*The type "literal" means that we mention a unique URL for the web API (unlike pattern or regular expression).
 ```
     'webapi_routes' => array(
         'zsWebApiClient' => array(
