@@ -1,6 +1,6 @@
 # Module configuration and initialization
 
-The file ```module.config.php``` returns a configuration array, which is a standard ZF2 way to describe and define module's details or meta-data (see [ZF2 configuration documentation](https://framework.zend.com/manual/2.4/en/tutorials/config.advanced.html)).
+The file ```module.config.php``` returns a **configuration array**, which is a standard ZF2 way to describe and define module's details or meta-data (see [ZF2 configuration documentation](https://framework.zend.com/manual/2.4/en/tutorials/config.advanced.html)).
 Our skeleton extension has a minimal set of a few predefined configuration values, which are required in order to let the extension work properly. We'll go over every key, and check what it is good for and what it provides us.
 
 ## Controllers
@@ -93,26 +93,6 @@ The new page should have its representation in the main menu, along with several
     ),
 ```
 
-## Static files
+# What's next?
 
-- Modules in ZS UI system can have a "public" folder which may contain static files like JS, CSS, and images. These assets may be used by that specific module. However, unlike the main "public" folder (<ZS installation dir>/gui/public), modules' public folders have no specific URL and they cannot be directly accessed from the web. Therefore, our UI platform has a script called "ModuleResource", which operates as gateway or a proxy that make the assets be available for the browser. The URL to the static files inside a module can be accessed via the next URL pattern:
-```
-    http://localhost:10081/ZendServer/ModuleResource/<module name>/<path inside module "public folder">
-```
-
-Let's have a real life example. When the module is structured in the next way:
-```
-* modules/
-    * MyModule/
-        * public/
-            * js/
-                * main.js
-            * css/
-                * main.css
-```
-
-We can access these two files using the next URLs correspondingly
-``` 
-    http://localhost:10081/ZendServer/ModuleResource/MyModule/js/main.js
-    http://localhost:10081/ZendServer/ModuleResource/MyModule/css/main.css
-```
+Follow [modules' source files documentation](source_files.md) to get familiar with creating controllers, and writing actions and models. 

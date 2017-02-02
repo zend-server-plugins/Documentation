@@ -41,40 +41,39 @@ contains ZF2 modules that will extend the functionality of our UI.
 
 Every module in the plugin has the next structure
 ```
-* **config/**
-    * **module.config.php** - Routing information, location in the main menu, 
-                            - and other configurations
-* **src/**
-    * **MyFirstExtensionModule/** - The name of the folder should reflect the namespace used in the source files
-        * **Controller/**
-            * **WebApiController.php** - Module controller, used as an entry point for the new web services
-* **public/** - Module's static files (JS/CSS/Images/Templates/...) location
-    * **js/**
-        * **index.js**
+* config/
+    * module.config.php // Routing information, location in the main menu, and other configurations
+* src/
+    * MyFirstExtensionModule/ - The name of the folder should reflect the namespace used in the source files
+        * Controller/
+            * WebApiController.php - Module controller, used as an entry point for the new web services
+* public/ - Module's static files (JS/CSS/Images/Templates/...) location
+    * js/
+        * index.js
         * ...
-    * **css/**
-        * **index.css**
+    * css/
+        * index.css
         * ...
     * ...
-* **views/** - Module's view files
-    * **my-first-extension-module/** - The name of the folder should reflect the namespace - dash separated. (The 
+* views/ - Module's view files
+    * my-first-extension-module/ - The name of the folder should reflect the namespace - dash separated. (The 
                                     - namespace is usually defined in capitalized camel case, like "MyCustomNamespace").
-        * **web-api/** - Lowercase controller name dash separated. i.e. WebApiController 
+        * web-api/ - Lowercase controller name dash separated. i.e. WebApiController 
                     - becomes "web-api". the suffix "Controller" is emitted
-            * **1x12/** - the version of the web API
-                * **my-first-web-api.pjson.phtml** - The view file that contains the JSON response. 
+            * 1x12/ - the version of the web API
+                * my-first-web-api.pjson.phtml - The view file that contains the JSON response. 
                                                 - The name of the view has to be the same as 
                                                 - the controller action
-                * **my-first-web-api.pxml.phtml** - The view file that contains the XML response
-* **Module.php** - Module initializations and DI definitions
+                * my-first-web-api.pxml.phtml - The view file that contains the XML response
+* Module.php - Module initializations and DI definitions
 ```
 
 Next, we are going to dive deep into every folder/part of the module.
 
-- [Module configuration and initialization (Module.php file)](http://github.com)
-- [Source files (controllers and models)](http://github.com)
-- [Static files (JS/CSS/Images)](http://github.com)
-- [View files](http://github.com)
+- [Module configuration and initialization (Module.php file)](UI_API/module_configuration.md)
+- [Source files (controllers and models)](UI_API/source_files.md)
+- [Static files (JS/CSS/Images)](UI_API/static_files.md)
+- [View files](UI_API/view_files.md)
 
 
 ### Client side
