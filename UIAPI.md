@@ -74,3 +74,9 @@ Next, we are going to dive deep into every folder/part of the module.
 - [Source files (controllers and models)](UI_API/source_files.md)
 - [Static files (JS/CSS/Images)](UI_API/static_files.md)
 - [View files](UI_API/view_files.md)
+
+To get familiar with Angular framework and its methodologies, please read the general instructions for the client side
+
+- [Client side implementation using Angular](UI_API/client_side.md)
+
+Any questions may be referred to feedback@zend.com
