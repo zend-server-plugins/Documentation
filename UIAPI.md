@@ -79,4 +79,4 @@ To get familiar with Angular framework and its methodologies, please read the ge
 
 - [Client side implementation using Angular](UI_API/client_side.md)
 
-Any questions may be referred to feedback@zend.com
+Any questions may be referred to zend.com
