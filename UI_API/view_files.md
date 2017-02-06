@@ -65,4 +65,4 @@ Same here, the wrapping element is called "responseData".
 
 ## What's next
 
-Follow [static files documentation](view_files.md) to start working with JavaScript files, CSS styles, images and other static files within the module
+Follow [static files documentation](static_files.md) to start working with JavaScript files, CSS styles, images and other static files within the module
