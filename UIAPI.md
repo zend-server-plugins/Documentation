@@ -16,7 +16,7 @@ JobQueue, CodeTracing, and others. A UI extension is a set of (one or more) ZF2 
 when the application starts. As mentioned before, there's no need to be familiar with ZF2, however, basic knowledge of MVC is pretty much required
 to understand the concept.
 
-Best way to start writing a new plugin, is by cloning the [Skeleton plugin repository](https://github.com/zend-server-plugins/Skeleton){:target="_blank"}, which is stored on GitHub as well. You may find our [first UI plugin](https://github.com/zend-server-plugins/zs_web_api_client/tree/master/ui/zsWebApiClient){:target="_blank"} as an additional useful reference. Most of the examples in this documentation are taken from there.
+Best way to start writing a new plugin, is by cloning the [Skeleton plugin repository](https://github.com/zend-server-plugins/Skeleton), which is stored on GitHub as well. You may find our [first UI plugin](https://github.com/zend-server-plugins/zs_web_api_client/tree/master/ui/zsWebApiClient) as an additional useful reference. Most of the examples in this documentation are taken from there.
 
 ### Structure
 
